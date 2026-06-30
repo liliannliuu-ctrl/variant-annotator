@@ -1,0 +1,20 @@
+# Variant Annotator Configuration
+
+input:
+  vcf_file: "data/sample.vcf"
+
+clinvar:
+  # Clinical significance levels to include in the report
+  include_significance:
+    - "Pathogenic"
+    - "Likely pathogenic"
+    - "Uncertain significance"
+    - "Likely benign"
+    - "Benign"
+
+output:
+  # Significance levels that get flagged as high priority in the report
+  high_priority:
+    - "Pathogenic"
+    - "Likely pathogenic"
+  report_file: "report.tsv"
