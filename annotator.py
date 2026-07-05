@@ -3,6 +3,7 @@ from numpy import record
 import vcf
 import requests, yaml, os, json
 from dotenv import load_dotenv
+import pandas as pd
 
 load_dotenv()  # Load environment variables from .env file
 Entrez.email = "liliannliuu@gmail.com" # module-level attributes for verification purposes
@@ -81,9 +82,12 @@ def classify(variant_info):
         print(f"Variant: {variant['id']}, Classification: {variant['classification']}")
     return sorted_variant_info
 
-def report(classifications):
-    printed_report = []
-    return printed_report
+def report(sorted_variant_info, report_file):
+    report_df = pd.DataFrame(sorted_variant_info, columns = ['chrom', 'pos', 'ref', 'alt', 'clin_sig', 'mole_conseq'])
+    report_df['alt'] = report_df['alt'].apply(lambda x: ','.join(str(i) for i in x))
+    report_df['mole_conseq'] = report_df['mole_conseq'].apply(lambda x: ','.join(str(i) for i in x))
+    with open(report_file, 'w') as f:
+        report_tsv = report_df.to_csv(f, sep="\t",index=False)
 
 if __name__ == "__main__":
     with open('config.yaml', 'r') as f:
@@ -92,5 +96,9 @@ if __name__ == "__main__":
     vcf_path = config['input']['vcf_file']
     # calls parse function
     variant_info = parse(vcf_path)
-    print(annotate(variant_info))
-    classify(variant_info)
+    variant_info = annotate(variant_info)
+    sorted_variant_info = classify(variant_info)
+    report_tsv = report(sorted_variant_info, config['output']['report_file'])
+
+
+
