@@ -57,9 +57,10 @@ def annotate(variant_info):
 def classify(variant_info):
     # mapping of significance and molecular consequence to numerical values
     clin_dict = {"pathogenic":0, "likely pathogenic":1, "uncertain significance":2, "likely benign":3, "benign":4, "drug response":5}
-    mole_dict = {"frameshift variant":0, "nonsense variant": 1, "inframe_deletion":2, "missense variant":3, "in-frame insertion":3, "synonymous variant":4}
+    mole_dict = {"frameshift variant":0, "nonsense variant": 1, "inframe deletion":2, "in frame deletion":2, "inframe insertion":2, "in frame insertion":2,"missense variant":3, "synonymous variant":4}
     for variant in variant_info:
-        clin_sig = variant.get('clin_sig', '').lower()
+        clin_sig = variant.get('clin_sig', '')
+        clin_sig = name_normalize(clin_sig)  # normalize clinical significance
         clin_sig_num = clin_dict.get(clin_sig, 6)  # default to 6 if not found
         print(f"Clinical significance: {clin_sig}, Numerical value: {clin_sig_num}")
         print()
@@ -68,11 +69,12 @@ def classify(variant_info):
         mole_conseq = variant.get('mole_conseq', '')
         mole_conseq_list = [] # init list to store molecular consequence values --> could be multiple for 1 variant
         for item in mole_conseq:
-            if item.lower() in mole_dict:
-                mole_conseq_list.append(mole_dict[item.lower()])
+            item = name_normalize(item)  # normalize molecular consequence
+            if item in mole_dict:
+                mole_conseq_list.append(mole_dict[item])
         mole_conseq_num = min(mole_conseq_list) if mole_conseq_list else 5  # default to 5 if not found
         class_tuple = (clin_sig_num, mole_conseq_num)
-        print(f"Molecular consequence: {mole_conseq}, Numerical value: {mole_conseq_num}")
+        print(f"Molecular consequence: {item}, Numerical value: {mole_conseq_num}")
         print()
         print()
         variant['classification'] = class_tuple
@@ -88,6 +90,13 @@ def report(sorted_variant_info, report_file):
     report_df['mole_conseq'] = report_df['mole_conseq'].apply(lambda x: ','.join(str(i) for i in x))
     with open(report_file, 'w') as f:
         report_tsv = report_df.to_csv(f, sep="\t",index=False)
+
+def name_normalize(name):
+    # normalize names to lowercase and remove spaces
+    norm_name = name.lower().replace("_", " ").replace("-", " ").strip()
+    return norm_name
+
+
 
 if __name__ == "__main__":
     with open('config.yaml', 'r') as f:
