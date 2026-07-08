@@ -1,6 +1,6 @@
-chrom	pos	ref	alt	clin_sig	mole_conseq
-13	32340300	A	T	Pathogenic	frameshift variant
-7	117548628	T	A	Pathogenic	inframe_deletion,missense variant
-17	7674220	C	T	Likely pathogenic	missense variant
-17	7673802	G	A	Likely benign	synonymous variant
-1	955597	G	A	drug response	missense variant
+chrom	pos	ref	alt	clin_sig	mole_conseq	priority_level
+13	32340300	A	T	Pathogenic	frameshift variant	high_priority
+7	117548628	T	A	Pathogenic	inframe_deletion,missense variant	high_priority
+17	7674220	C	T	Likely pathogenic	missense variant	high_priority
+17	7673802	G	A	Likely benign	synonymous variant	low_priority
+1	955597	G	A	drug response	missense variant	pharmacogenomics

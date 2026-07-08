@@ -12,9 +12,17 @@ clinvar:
     - "Likely benign"
     - "Benign"
 
-output:
+priority_levels:
   # Significance levels that get flagged as high priority in the report
   high_priority:
-    - "Pathogenic"
-    - "Likely pathogenic"
-  report_file: "report.tsv"
+    - "pathogenic"
+    - "likely pathogenic"
+  medium_priority:
+    - "uncertain significance"
+  low_priority:
+    - "likely benign"
+    - "benign"
+  pharmacogenomics:
+    - "drug response"
+
+report_file: "report.tsv"
