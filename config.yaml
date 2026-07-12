@@ -1,7 +1,7 @@
 # Variant Annotator Configuration
 
 input:
-  vcf_file: "data/sample.vcf"
+  vcf_file: "data/clinvar_test.vcf"
 
 clinvar:
   # Clinical significance levels to include in the report

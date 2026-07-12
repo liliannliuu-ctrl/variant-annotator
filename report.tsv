@@ -1,6 +1,104 @@
 chrom	pos	ref	alt	clin_sig	mole_conseq	priority_level
-13	32340300	A	T	Pathogenic	frameshift variant	high_priority
-7	117548628	T	A	Pathogenic	inframe_deletion,missense variant	high_priority
-17	7674220	C	T	Likely pathogenic	missense variant	high_priority
-17	7673802	G	A	Likely benign	synonymous variant	low_priority
-1	955597	G	A	drug response	missense variant	pharmacogenomics
+Y	644469	TAC	AG	Pathogenic	frameshift variant,intron variant	high_priority
+Y	634734	C	G	Pathogenic	missense variant	high_priority
+Y	640842	G	C	Pathogenic	missense variant	high_priority
+Y	640843	C	A	Pathogenic	missense variant	high_priority
+Y	640851	C	T	Pathogenic	missense variant	high_priority
+Y	640862	G	C	Pathogenic	missense variant	high_priority
+Y	1290449	G	A	Pathogenic	missense variant,non-coding transcript variant	high_priority
+Y	624388	T	TTTG	Pathogenic	5 prime UTR variant	high_priority
+Y	634644	G	T	Pathogenic	nonsense	high_priority
+Y	640879	G	A	Pathogenic	splice donor variant	high_priority
+Y	641037	C	T	Pathogenic	nonsense	high_priority
+Y	641051	C	G	Pathogenic	nonsense	high_priority
+Y	634798	G	T	Likely pathogenic	missense variant	high_priority
+Y	630957	CGGCGGA	C	Uncertain significance	inframe_deletion	medium_priority
+Y	631133	A	T	Uncertain significance	missense variant	medium_priority
+Y	634687	A	G	Uncertain significance	missense variant	medium_priority
+Y	634702	G	C	Uncertain significance	missense variant	medium_priority
+Y	634719	G	C	Uncertain significance	missense variant	medium_priority
+Y	634777	T	C	Uncertain significance	missense variant	medium_priority
+Y	640862	G	T	Uncertain significance	missense variant	medium_priority
+Y	640877	A	C	Uncertain significance	missense variant	medium_priority
+Y	644397	G	A	Uncertain significance	missense variant,intron variant	medium_priority
+Y	644478	T	C	Uncertain significance	missense variant,intron variant	medium_priority
+Y	644560	A	G	Uncertain significance	missense variant,intron variant	medium_priority
+Y	644586	G	A	Uncertain significance	missense variant,intron variant	medium_priority
+Y	1285892	A	G	Uncertain significance	missense variant,non-coding transcript variant,intron variant	medium_priority
+Y	1290393	G	A	Uncertain significance	missense variant,non-coding transcript variant	medium_priority
+Y	1294349	A	G	Uncertain significance	missense variant,non-coding transcript variant,intron variant	medium_priority
+Y	1294357	G	A	Uncertain significance	missense variant,synonymous variant,non-coding transcript variant,intron variant	medium_priority
+Y	1294373	C	T	Uncertain significance	missense variant,non-coding transcript variant,intron variant	medium_priority
+Y	1294387	C	T	Uncertain significance	missense variant,synonymous variant,non-coding transcript variant,intron variant	medium_priority
+Y	1303982	C	G	Uncertain significance	missense variant,non-coding transcript variant,intron variant	medium_priority
+Y	1303992	G	T	Uncertain significance	missense variant,non-coding transcript variant,intron variant	medium_priority
+Y	1309486	G	A	Uncertain significance	3 prime UTR variant,missense variant,non-coding transcript variant,intron variant	medium_priority
+Y	56960446	C	T	Uncertain significance	missense variant	medium_priority
+Y	630382	C	G	Uncertain significance	intron variant	medium_priority
+Y	630421	C	T	Uncertain significance	intron variant	medium_priority
+Y	630526	G	A	Uncertain significance	5 prime UTR variant	medium_priority
+Y	640862	G	None	Uncertain significance	no sequence alteration	medium_priority
+Y	644634	T	C	Uncertain significance	stop lost,intron variant	medium_priority
+Y	644677	C	A	Uncertain significance	3 prime UTR variant,intron variant	medium_priority
+Y	644919	A	AAG	Uncertain significance	3 prime UTR variant,intron variant	medium_priority
+Y	658841	T	C	Uncertain significance	3 prime UTR variant	medium_priority
+Y	658845	A	G	Uncertain significance	3 prime UTR variant	medium_priority
+Y	1623156	C	A	Uncertain significance	nonsense	medium_priority
+Y	1303973	G	A	Likely benign	missense variant,non-coding transcript variant,intron variant	low_priority
+Y	631017	G	A	Likely benign	synonymous variant	low_priority
+Y	1303948	T	G	Likely benign	synonymous variant,non-coding transcript variant,intron variant	low_priority
+Y	1303972	C	T	Likely benign	synonymous variant,non-coding transcript variant,intron variant	low_priority
+Y	624386	C	G	Likely benign	5 prime UTR variant	low_priority
+Y	634834	C	G	Likely benign	intron variant	low_priority
+Y	1305535	G	A	Likely benign	intron variant	low_priority
+Y	1282753	C	G	Benign	missense variant,5 prime UTR variant,non-coding transcript variant	low_priority
+Y	1305473	G	A	Benign	synonymous variant,missense variant,non-coding transcript variant,intron variant	low_priority
+Y	1305655	G	A	Benign	missense variant,intron variant	low_priority
+Y	1309488	G	A	Benign	3 prime UTR variant,missense variant,non-coding transcript variant,intron variant	low_priority
+Y	1309528	G	T	Benign	3 prime UTR variant,missense variant,non-coding transcript variant,intron variant	low_priority
+Y	658808	G	A	Benign	synonymous variant	low_priority
+Y	1288599	T	C	Benign	synonymous variant,5 prime UTR variant,non-coding transcript variant	low_priority
+Y	1290403	G	A	Benign	synonymous variant,non-coding transcript variant	low_priority
+Y	1290412	G	C	Benign	synonymous variant,non-coding transcript variant	low_priority
+Y	1290424	G	A	Benign	synonymous variant,non-coding transcript variant	low_priority
+Y	1303975	G	A	Benign	synonymous variant,non-coding transcript variant,intron variant	low_priority
+Y	624523	C	A	Benign	5 prime UTR variant	low_priority
+Y	624528	G	C	Benign	5 prime UTR variant	low_priority
+Y	630370	G	A	Benign	intron variant	low_priority
+Y	630879	G	C	Benign	5 prime UTR variant	low_priority
+Y	631191	T	G	Benign	intron variant	low_priority
+Y	634603	C	A	Benign	intron variant	low_priority
+Y	641092	C	G	Benign	intron variant	low_priority
+Y	634689	CAG	C	Pathogenic/Likely pathogenic	frameshift variant	
+Y	630981	TAAG	T	Conflicting classifications of pathogenicity	inframe_deletion	
+Y	630983	A	C	Conflicting classifications of pathogenicity	missense variant	
+Y	634780	G	A	Conflicting classifications of pathogenicity	missense variant	
+Y	640836	C	T	Pathogenic/Likely pathogenic	missense variant	
+Y	641001	G	A	Benign/Likely benign	missense variant	
+Y	641031	G	A	Conflicting classifications of pathogenicity	missense variant	
+Y	644455	C	T	Conflicting classifications of pathogenicity	missense variant,intron variant	
+Y	658804	G	A	Conflicting classifications of pathogenicity	missense variant	
+Y	1196817	C	T	not provided	missense variant,non-coding transcript variant	
+Y	1198571	C	T	not provided	missense variant	
+Y	1202479	C	T	not provided	missense variant,non-coding transcript variant	
+Y	1206513	T	C	not provided	5 prime UTR variant,missense variant,non-coding transcript variant	
+Y	1206592	C	T	not provided	5 prime UTR variant,missense variant,non-coding transcript variant	
+Y	1288840	C	T	Benign/Likely benign	missense variant,non-coding transcript variant	
+Y	1290354	G	A	Benign/Likely benign	missense variant,non-coding transcript variant	
+Y	630960	C	T	Benign/Likely benign	synonymous variant	
+Y	631041	G	A	Conflicting classifications of pathogenicity	synonymous variant	
+Y	634619	G	T	Conflicting classifications of pathogenicity	synonymous variant	
+Y	634740	C	A	Benign/Likely benign	synonymous variant	
+Y	644459	G	A	Conflicting classifications of pathogenicity	synonymous variant,intron variant	
+Y	644480	C	T	Conflicting classifications of pathogenicity	synonymous variant,intron variant	
+Y	644621	G	A	Benign/Likely benign	synonymous variant,intron variant	
+Y	644627	G	A	Benign/Likely benign	synonymous variant,intron variant	
+Y	1288578	A	G	Benign/Likely benign	synonymous variant,non-coding transcript variant,5 prime UTR variant	
+Y	1300601	C	T	Conflicting classifications of pathogenicity	synonymous variant,intron variant	
+Y	630843	C	T	Conflicting classifications of pathogenicity	5 prime UTR variant	
+Y	630887	CG	C	Conflicting classifications of pathogenicity	5 prime UTR variant	
+Y	644377	G	T	Benign/Likely benign	intron variant	
+Y	644384	C	T	Conflicting classifications of pathogenicity	intron variant	
+Y	1196852	A	C	Unknown	U,n,k,n,o,w,n	
+Y	1294321	G	A	Benign/Likely benign	intron variant	
+Y	1294453	C	CACAGAAAGGTCGGTGAG	Benign/Likely benign	splice donor variant,intron variant	

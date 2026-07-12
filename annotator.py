@@ -27,19 +27,24 @@ def parse(vcf_path): # reads vcf file, storing the variant information as a list
 def annotate(variant_info): # retrieves clinical significance and molecular consequence from ClinVar using NCBI Entrez API
     for variant in variant_info:
         # fetching ncbi ids
-        handle = Entrez.esearch(db="clinvar", term=variant["id"], retmax=1)
-        record = Entrez.read(handle) 
+        handle = Entrez.esearch(db="clinvar", term=variant["id"], retmax=1) # esearch returns a list of ncbi ids matching the search term
+        record = Entrez.read(handle) # record is a biopython object that is essentially a dictionary
         handle.close()
-        ncbi_id = record["IdList"][0] if record["IdList"] else None
+        ncbi_id = record["IdList"][0] if record["IdList"] else None # assigns the first ncbi id in the list to ncbi_id, or None if the list is empty
         variant['ncbi_id'] = ncbi_id
 
         # getting clinvar data using ncbi ids 
-        handle = Entrez.esummary(db="clinvar", id=variant["ncbi_id"], retmode="json")
-        data = json.loads(handle.read().decode())
+        handle = Entrez.esummary(db="clinvar", id=variant["ncbi_id"], retmode="json") # esummary returns info on the variant in JSON format
+        data = json.loads(handle.read().decode()) # loads the JSON data from the response into a Python dictionary
         handle.close()
-
+        
         # access & store clinical significance
-        if 'germline_classification' in data['result'][ncbi_id]:
+        if 'result' not in data or ncbi_id not in data['result']: # accounts for variants without ClinVar entry
+            variant['clin_sig'] = "Unknown"
+            variant['mole_conseq'] = "Unknown"
+            continue
+
+        elif 'germline_classification' in data['result'][ncbi_id]:
             variant['clin_sig'] = data['result'][ncbi_id]['germline_classification']['description']
         else:
             variant['clin_sig'] = "Unknown"
