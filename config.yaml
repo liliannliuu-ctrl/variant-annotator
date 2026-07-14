@@ -14,12 +14,13 @@ clinvar:
 
 priority_levels:
   # Significance levels that get flagged as high priority in the report
-  high_priority:
+  high priority:
     - "pathogenic"
     - "likely pathogenic"
-  medium_priority:
+  medium priority:
+    - "conflicting classifications of pathogenicity"
     - "uncertain significance"
-  low_priority:
+  low priority:
     - "likely benign"
     - "benign"
   pharmacogenomics:

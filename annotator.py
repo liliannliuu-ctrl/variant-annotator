@@ -10,6 +10,8 @@ Entrez.api_key = os.getenv("NCBI_API_KEY")
 
 def name_standardize(name): # helper function to standardize names for comparison
     stand_name = name.lower().replace("_", " ").replace("-", " ").strip()
+    if "/" in stand_name:
+        stand_name = stand_name.split("/")[0].strip()  # take the first part before the slash
     return stand_name
 
 def parse(vcf_path): # reads vcf file, storing the variant information as a list of Record objects
@@ -41,7 +43,7 @@ def annotate(variant_info): # retrieves clinical significance and molecular cons
         # access & store clinical significance
         if 'result' not in data or ncbi_id not in data['result']: # accounts for variants without ClinVar entry
             variant['clin_sig'] = "Unknown"
-            variant['mole_conseq'] = "Unknown"
+            variant['mole_conseq'] = ["Unknown"] # this is a list to account for molecular cons being in list format in the ClinVar API
             continue
 
         elif 'germline_classification' in data['result'][ncbi_id]:
@@ -58,15 +60,17 @@ def annotate(variant_info): # retrieves clinical significance and molecular cons
         
 def classify(variant_info, priority_levels): # classifies variants based on info from annotate() to sort them by priority level
     # mapping of significance and molecular consequence to numerical values --> lower = more severe
-    clin_dict = {"pathogenic":0, "likely pathogenic":1, "uncertain significance":2, "likely benign":3, "benign":4, "drug response":5}
-    mole_dict = {"frameshift variant":0, "nonsense variant": 1, "inframe deletion":2, "in frame deletion":2, "inframe insertion":2, "in frame insertion":2,"missense variant":3, "synonymous variant":4}
+    clin_dict = {"pathogenic":0, "likely pathogenic":1, "conflicting classifications of pathogenicity":2, "uncertain significance":3, "likely benign":4, "benign":5, "drug response":6, "not provided":7, "unknown":8}
+    mole_dict = {"nonsense variant":0, "nonsense":0, "frameshift variant":1, "splice donor variant":2, "stop lost":3, "missense variant":4, "inframe deletion":5, "in frame deletion":5, "inframe insertion":5, "in frame insertion":5, "5 prime UTR variant":6, "3 prime UTR variant":7, "non-coding transcript variant":7, "intron variant":8, "synonymous variant":9, "no sequence alteration":10}
 
     for variant in variant_info:
         clin_sig = variant.get('clin_sig', '')
         clin_sig = name_standardize(clin_sig)  # standardize clinical significance
-        clin_sig_num = clin_dict.get(clin_sig, 6)  # default to 6 if not found
+        variant['clin_sig'] = clin_sig  # update the variant dictionary with the standardized clinical significance
+        clin_sig_num = clin_dict.get(clin_sig, 9)  # default to 9 if not found
 
         priority = "Unknown"
+        variant['priority_level'] = priority
         for level in priority_levels: # associates clinical significance with priority level based on config.yaml
             if clin_sig in priority_levels[level]:
                 priority = level
@@ -79,7 +83,7 @@ def classify(variant_info, priority_levels): # classifies variants based on info
             item = name_standardize(item)  # standardize molecular consequence
             if item in mole_dict:
                 mole_conseq_list.append(mole_dict[item])
-        mole_conseq_num = min(mole_conseq_list) if mole_conseq_list else 5  # selects lowest number, default to 5 if not found
+        mole_conseq_num = min(mole_conseq_list) if mole_conseq_list else 11  # selects lowest number, default to 11 if not found
         class_tuple = (clin_sig_num, mole_conseq_num)
         variant['classification'] = class_tuple
 
