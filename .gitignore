@@ -2,4 +2,4 @@ venv/
 __pycache__/
 *.pyc
 .env
-data/*.vcf
+data/*.vcf.DS_Store
