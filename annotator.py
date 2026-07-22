@@ -14,10 +14,14 @@ def name_standardize(name): # helper function to standardize names for compariso
         stand_name = stand_name.split("/")[0].strip()  # take the first part before the slash
     return stand_name
 
-def parse(vcf_path): # reads vcf file, storing the variant information as a list of Record objects
+def parse(vcf_path, max_variants): # reads vcf file, storing the variant information as a list of Record objects
     vcf_reader = vcf.Reader(open(vcf_path, 'r'))
     variant_info = []
+    counter = 0 # counter to keep track of number of variants processed
     for record in vcf_reader:
+        if max_variants is not None and counter >= max_variants: # limits variants processed
+            break           
+        counter += 1
         variant_info.append({
             "chrom": record.CHROM,
             "pos": record.POS,
@@ -105,11 +109,12 @@ if __name__ == "__main__":
 
     # stores config info in variables
     vcf_path = config['input']['vcf_file']
+    parse_limit = config['input']['max_variants']
     priority_levels = config['priority_levels']
     report_path = config['report_file']
 
     # call the functions in order
-    variant_info = parse(vcf_path)
+    variant_info = parse(vcf_path,parse_limit)
     variant_info = annotate(variant_info)
     sorted_variant_info = classify(variant_info, priority_levels)
     report(sorted_variant_info, report_path)

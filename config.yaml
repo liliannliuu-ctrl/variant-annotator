@@ -2,6 +2,7 @@
 
 input:
   vcf_file: "data/clinvar_test.vcf"
+  max_variants: null # Set to null for no limit, or specify an integer to limit the number of variants parsed
 
 clinvar:
   # Clinical significance levels to include in the report
